@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +24,10 @@ public class RequestController {
 	
 	
 	@PostMapping("/create")
-	public Account createAccount(@RequestBody Account account) {
+	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
 		Account createdAccount=service.createAccount(account);
-		return createdAccount;
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdAccount);
 	}
 	@GetMapping("/alldetails")
 	public List<Account> getAllaccountdetails() {
