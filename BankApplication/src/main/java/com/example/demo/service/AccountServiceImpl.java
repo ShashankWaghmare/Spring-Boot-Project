@@ -60,7 +60,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void closeAccount(Long accountNumber) {
-		// TODO Auto-generated method stub
+		repo.deleteById(accountNumber);
+		
 		
 	}
 
