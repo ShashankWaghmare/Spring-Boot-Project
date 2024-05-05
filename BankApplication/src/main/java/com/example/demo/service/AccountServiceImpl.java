@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,18 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account getAccountDetailsByAccountNumber(Long AccountNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Account> act_details=repo.findById(AccountNumber);
+		if(act_details.isEmpty()) {
+			throw new RuntimeException("Account is not present");
+		}
+		Account selectedaccount=act_details.get();
+		return selectedaccount;
 	}
 
 	@Override
 	public List<Account> getAllAccountDetails() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Account> details=repo.findAll();
+		return details;
 	}
 
 	@Override
