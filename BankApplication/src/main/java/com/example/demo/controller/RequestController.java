@@ -46,4 +46,9 @@ public class RequestController {
 		Account withdrawn_account=service.withdrawAmount(accountNumber, amount);
 		return withdrawn_account;
 	}
+	@PutMapping("/depositAmount/{accountNumber}/{amount}")
+	   public Account depositAmount(@PathVariable Long accountNumber,@PathVariable Double amount) {
+		Account deposit_account=service.depositAmount(accountNumber, amount);
+		return deposit_account;
+	}
 }
